@@ -390,7 +390,7 @@ getUsers(); */
 
 getUserById(1); */
 
-async function createPost() {
+/* async function createPost() {
   try {
     const newPost = {
       title: "моя первая запись",
@@ -413,4 +413,146 @@ async function createPost() {
   }
 }
 
-createPost();
+createPost(); */
+
+/* console.log("Optitonal Chaining");
+
+const user1 = {
+  name: "Андрей",
+  address: {
+    city: "Волжский",
+    street: "Пушкина",
+  },
+};
+
+const user2 = {
+  name: "Дмитрий",
+}
+
+const city1 = user2.address && user2.address.city;
+console.log("город (старый способ):", city1);
+
+const city2 = user2.address?.city;
+console.log("город (новый способ):", city2); 
+
+const street = user1.address?.street;
+console.log("улица:", street);
+
+const admin = {
+  name: "администратор",
+  permissions: {
+    canDelete: () => true,
+  },
+};
+
+const guest = {
+  name: "гость",
+};
+
+console.log("админ может удалять?", admin.permissions?.canDelete?.());
+console.log("гость может удалять?", guest.permissions?.canDelete?.()); */
+
+/* const company = {
+  name: "Tech Corp",
+  employees: [
+    { name: "Надежда", role: "Developer" },
+    { name: "Анна", role: "Designer" },
+  ],
+};
+
+const startup = {
+  name: "New Startup",
+};
+
+console.log("первый сотрудник:", company.employees?.[0]?.name);
+console.log("первый сотрудник стартупа:", startup.employees?.[0]?.name); */
+
+/* console.log("Nullish Coalescing");
+
+const value1 = 0;
+const value2 = "";
+const value3 = false;
+const value4 = null;
+const value5 = undefined;
+
+console.log('value1 ?? "default":', value1 ?? "default");
+console.log('value2 ?? "default":', value2 ?? "default");
+console.log('value3 ?? "default":', value3 ?? "default");
+console.log('value4 ?? "default":', value4 ?? "default");
+console.log('value5 ?? "default":', value5 ?? "default"); */
+
+/* function displayUserSettings(settings) {
+  const theme = settings?.theme ?? "light";
+  const fontSize = settings?.fontSize ?? 14;
+  const notifications = settings?.notifications ?? true;
+
+  console.log("настройки пользователя:");
+  console.log("тема:", theme);
+  console.log("размер шрифта:", fontSize);
+  console.log("уведомления:", notifications);
+}
+
+displayUserSettings({ theme: "dark", fontSize: 16 });
+displayUserSettings({ notifications: false });
+displayUserSettings({}); */
+
+/* const apiResponse = {
+  data: {
+    user: {
+      profile: {
+        setting: {
+          language: "ru",
+        },
+      },
+    },
+  },
+};
+
+const language = apiResponse?.data?.user?.profile?.setting?.language ?? "en";
+console.log("язык", language);
+
+const emptyResponse = {};
+const defaultLanguage = emptyResponse.data?.user?.profile?.settings?.language ?? "en";
+console.log("язык по умолчанию:", defaultLanguage); */
+
+const order = {
+  customer: {
+    name: "Серый",
+    email: "ser@example.com"
+  },
+  shipping: {
+    address: "ул. орлова, д. 10",
+    city: "москва"
+  },
+  payment: {
+    method: "кредитная карта",
+    status: "оплачено"
+  }
+};
+
+const customerName = order.customer?.name ?? "имя не указано";
+const customerEmail = order.customer?.email ?? "email не указан";
+
+const shippingAddress = order.shipping?.address ?? "адрес не указан";
+const shippingCity = order.shipping?.city ?? "город не указан";
+
+const paymentMethod = order.payment?.method ?? "способ оплаты не указан";
+const paymentStatus = order.payment?.status ?? "статус оплаты не указан";
+
+function displayOrder(order) {
+  const customerName = order.customer?.name ?? "имя не указано";
+  const customerEmail = order.customer?.email ?? "email не указан";
+
+  const shippingAddress = order.shipping?.address ?? "адрес не указан";
+  const shippingCity = order.shipping?.city ?? "город не указан";
+
+  const paymentMethod = order.payment?.method ?? "способ оплаты не указан";
+  const paymentStatus = order.payment?.status ?? "статус оплаты не указан";
+
+  console.log(`инфа о заказе:
+  Клиент: ${customerName} (${customerEmail})
+  Доставка: ${shippingAddress}, ${shippingCity}
+  Оплата: ${paymentMethod} (${paymentStatus})`);
+}
+
+displayOrder(order);
