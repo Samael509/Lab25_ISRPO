@@ -314,7 +314,7 @@ async function cookDinnerFast() {
 }
 cookDinnerFast().then((result) => console.log(result)); */
 
-function delay(ms) {
+/* function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -356,3 +356,61 @@ async function confirmOrder() {
   await delay(1000);
   return true;
 }
+
+console.log("Fetch API");
+async function getUsers() {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    if (!response.ok) {
+      throw new Error(`HTTP ошибка! статус: ${response.status}`);
+    }
+    const users = await response.json();
+    console.log("первые 3 пользователя:");
+    users.slice(0, 3).forEach((user) => {
+      console.log(`- ${user.name} (${user.email})`);
+    });
+  } catch (error) {
+    console.log("ошибка при загрузке пользователей:", error.message);
+  }
+}
+getUsers(); */
+
+/* async function getUserById(id) {
+  try {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+    const user = await response.json();
+    console.log(`Пользователь #${id}`);
+    console.log(`Имя: ${user.name}`);
+    console.log(`Город: ${user.address.city}`);
+    console.log(`Компания: ${user.company.name}`);
+  } catch (error) {
+    console.log("Ошибка:", error.message);
+  }
+}
+
+getUserById(1); */
+
+async function createPost() {
+  try {
+    const newPost = {
+      title: "моя первая запись",
+      body: "это содержание моей первой записи в блоге",
+      userId: 1,
+    };
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newPost),
+    });
+    const createdPost = await response.json();
+    console.log("создана новая запись:");
+    console.log("ID:", createdPost.id);
+    console.log("заголовок:", createdPost.title);
+  } catch (error) {
+    console.log("ошибка при создании записи:", error.message);
+  }
+}
+
+createPost();
