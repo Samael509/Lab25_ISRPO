@@ -550,9 +550,9 @@ function displayOrder(order) {
   const paymentStatus = order.payment?.status ?? "статус оплаты не указан";
 
   console.log(`инфа о заказе:
-  Клиент: ${customerName} (${customerEmail})
-  Доставка: ${shippingAddress}, ${shippingCity}
-  Оплата: ${paymentMethod} (${paymentStatus})`);
+  клиент: ${customerName} (${customerEmail})
+  доставка: ${shippingAddress}, ${shippingCity}
+  оплата: ${paymentMethod} (${paymentStatus})`);
 }
 
 displayOrder(order);

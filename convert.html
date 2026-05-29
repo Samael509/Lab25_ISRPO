@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>конвертер валют</title>
+</head>
+
+<body>
+
+    <h2>конвертер валют</h2>
+
+    <input type="number" id="amount" placeholder="введите сумму" />
+
+    <select id="currency">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="RUB">RUB</option>
+    </select>
+
+    <button id="convertBtn">конвертировать</button>
+    <div id="result"></div>
+
+    <script>
+        const exchangeRates = {
+            USD: { EUR: 0.85, RUB: 75 },
+            EUR: { USD: 1.18, RUB: 88 },
+            RUB: { USD: 0.013, EUR: 0.011 }
+        };
+
+        document.getElementById('convertBtn').addEventListener('click', () => {
+            const amountInput = document.getElementById('amount');
+            const currencySelect = document.getElementById('currency');
+            const resultDiv = document.getElementById('result');
+
+            const amount = parseFloat(amountInput.value);
+            const fromCurrency = 'USD';
+            const toCurrency = currencySelect.value;
+
+            if (isNaN(amount) || amount <= 0) {
+                resultDiv.textContent = 'введите корректную сумму.';
+                return;
+            }
+
+            const rate = exchangeRates[fromCurrency][toCurrency];
+
+            if (!rate) {
+                resultDiv.textContent = 'курс обмена недоступен.';
+                return;
+            }
+
+            const convertedAmount = amount * rate;
+
+            resultDiv.textContent = `${amount} ${fromCurrency} = ${convertedAmount.toFixed(2)} ${toCurrency}`;
+        });
+    </script>
+
+</body>
+
+</html>
