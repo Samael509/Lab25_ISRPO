@@ -1,4 +1,4 @@
-console.log("\n=== Деструктуризация массивов ===");
+/* console.log("\n=== Деструктуризация массивов ===");
 const colors = ["red", "green", "blue"];
 const color1 = colors[0];
 const color2 = colors[1];
@@ -244,3 +244,115 @@ function checkInventory(product) {
 checkInventory("товар1")
   .then((message) => console.log(message))
   .catch((error) => console.log(error));
+ */
+/* console.log("Async/Await");
+async function greet() {
+  return "привет!";
+}
+greet().then((message) => console.log(message));
+
+function getWeather() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ temp: 22, condition: "солнечно" });
+    }, 1000);
+  });
+}
+async function showWeather() {
+  console.log("загрузка погоды...");
+  const weather = await getWeather();
+  console.log(`температура: ${weather.temp}°C, ${weather.condition}`);
+}
+showWeather(); */
+
+/* async function fetchData(shouldFail) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (shouldFail) {
+        reject("ошибка при загрузке данных");
+      } else {
+        resolve({ data: "важные данные" });
+      }
+    }, 800);
+  });
+}
+
+async function getData() {
+  try {
+    const result = await fetchData(false);
+    console.log("успешно:", result.data);
+    const failedResult = await fetchData(true);
+    console.log("это не выполнится");
+  } catch (error) {
+    console.log("поймана ошибка:", error);
+  }
+}
+
+getData(); */
+
+/* async function cookDinner() {
+  console.log("начинаем готовить...");
+  const pasta = await delay(1000).then(() => "паста готова");
+  console.log(pasta);
+  const sauce = await delay(500).then(() => "соус готов");
+  console.log(sauce);
+  const salad = await delay(700).then(() => "салат готов");
+  console.log(salad);
+  return "ужин готов!";
+}
+cookDinner().then((result) => console.log(result));
+
+async function cookDinnerFast() {
+  console.log("готовим всё одновременно...");
+  const [pasta, sauce, salad] = await Promise.all([
+    delay(1000).then(() => "паста готова"),
+    delay(500).then(() => "соус готов"),
+    delay(700).then(() => "салат готов")
+  ]);
+  console.log(pasta, sauce, salad);
+  return "ужин готов быстрее!";
+}
+cookDinnerFast().then((result) => console.log(result)); */
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function processOrder() {
+  try {
+    const checkProduct = await checkAvailability();
+    if (!checkProduct) {
+      throw new Error('товар недоступен');
+    }
+
+    const calculatePrice = await calculateCost();
+    if (!calculatePrice) {
+      throw new Error('ошибка при расчёте стоимости');
+    }
+
+    const confirmOrder = await confirmOrder();
+    if (!confirmOrder) {
+      throw new Error('подтверждение не получено');
+    }
+
+    return 'заказ успешно обработан';
+  } catch (error) {
+    console.error('ошибка:', error.message);
+    throw error;
+  }
+}
+
+async function checkAvailability() {
+  await delay(1000);
+  return true;
+}
+
+async function calculateCost() {
+  await delay(1000);
+  return 100;
+}
+
+async function confirmOrder() {
+  await delay(1000);
+  return true;
+}
